@@ -1,0 +1,2 @@
+//export const CREATE_COURSE = 'CREATE_COURSE'; Not in use
+export const LOAD_COURSES_SUCCESS = 'LOAD_COURSES_SUCCESS';
