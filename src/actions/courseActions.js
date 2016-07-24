@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from './actionTypes/actionTypes';
 import courseApi from '../api/mockCourseApi';
 /* not in use
 export function createCourse(course){
@@ -10,6 +10,14 @@ export function loadCoursesSuccess(courses){
     return {type: types.LOAD_COURSES_SUCCESS, courses};
 }
 
+export function createCourseSuccess(course){
+    return {type: types.CREATE_COURSE_SUCCESS, course};
+}
+
+export function updateCourseSuccess(course){
+    return {type: types.UPDATE_COURSE_SUCCESS, course};
+}
+
 export function loadCourses(){
     return function(dispatch) {
         //getAllCourses returns a promise
@@ -19,5 +27,15 @@ export function loadCourses(){
             }).catch(error => {
                 throw(error);
             });
+    };
+}
+
+export function saveCourse(course){
+    return function(dispatch, getState) {
+        return courseApi.saveCourse(course).then(savedCourse => {
+            course.id ? dispatch(updateCourseSuccess(savedCourse)):dispatch(createCourseSuccess(savedCourse));
+        }).catch(error=>{
+               throw(error);
+        });
     };
 }

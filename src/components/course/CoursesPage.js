@@ -3,43 +3,28 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
+import {browserHistory} from 'react-router';
+
 class CoursesPage extends React.Component{
     constructor(props,context){
         super(props,context);
-        /*this.state={
-            course:{title:""}
-        };
-        Bind here has better performance than add binding in render
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);*/
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
     
-    /*
-    onTitleChange(event){
-        const course = this.state.course;
-        course.title = event.target.value;
-        this.setState({course:course});
+    redirectToAddCoursePage(){
+        browserHistory.push('/course');
     }
-    
-    onClickSave(){
-        //Step1. Create a action which takes state.course, find step 2 in actions -> courseActions
-        //this.props.dispatch(courseActions.createCourse(this.state.course));
-        //this.props.createCourse(this.state.course);
-        this.props.actions.createCourse(this.state.course);
-    }*/
-    /*
-    courseRow(course,index){
-        return <div key={index}>{course.title}</div>;
-    }*/
-    
-    //Step 6, render courses 
+
     render(){
         const {courses} = this.props;
-
         return(
            <div>
                <h1>Courses</h1>
                <CourseList courses={courses}/>
+               <input type="submit"
+                      value="Add Course"
+                      className="btn btn-primary"
+                      onClick={this.redirectToAddCoursePage}/>
            </div>  
         );
     }

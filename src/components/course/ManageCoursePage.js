@@ -12,6 +12,9 @@ class ManageCoursepage extends React.Component {
             course: Object.assign({},this.props.course),
             errors:{}
         };
+
+        this.updateCourseState = this.updateCourseState.bind(this);
+        this.saveCourse = this.saveCourse.bind(this);
     }
     
     updateCourseState(event){
@@ -21,10 +24,25 @@ class ManageCoursepage extends React.Component {
         return this.setState({course:course});
     }
 
+    saveCourse(event){
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+        this.context.router.push('/courses');
+    }
+    
+    //This function enables that if you refresh course page, course info will not be reset. 
+    componentWillReceiveProps(nextProps){
+    if(this.props.course.id != nextProps.course.id){
+           this.setState({course:Object.assign({},nextProps.course)});
+        }
+    }
+
     render(){
         return(
             <CourseForm 
               allAuthors={this.props.authors}
+              onChange={this.updateCourseState}
+              onSave={this.saveCourse}
               errors={this.state.errors}
               course={this.state.course}
             />
@@ -34,12 +52,32 @@ class ManageCoursepage extends React.Component {
 
 ManageCoursepage.propTypes = {
     course:PropTypes.object.isRequired,
-    authors:PropTypes.array.isRequired
+    authors:PropTypes.array.isRequired,
+    actions:PropTypes.object.isRequired
 };
 
+//Pull in the React Router context so router is available on this.context.router.
+ManageCoursepage.contextTypes = {
+    router:PropTypes.object
+};
+
+
+function getCourseById(courses,id){
+    const course = courses.filter(course => course.id == id);
+    if(course) return course[0];
+    return null;
+}
+
 function mapStateToProps(state, ownProps){
+    const courseId = ownProps.params.id;// from the path '/course/:id'
+
     let course = {id:'',watchHref:'',title:'',authorId:'',length:'',category:''};
     
+    if(courseId && state.courses.length > 0){
+        course = getCourseById(state.courses, courseId);
+    }
+
+    //Author needs to be reformat
     const authorsFormattedForDropdown = state.authors.map(
         author => {
            return{
