@@ -1,5 +1,6 @@
 import * as types from './actionTypes/actionTypes';
 import courseApi from '../api/mockCourseApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 /* not in use
 export function createCourse(course){
     //Step 2, find step 3 in reducer
@@ -20,6 +21,7 @@ export function updateCourseSuccess(course){
 
 export function loadCourses(){
     return function(dispatch) {
+        dispatch(beginAjaxCall());
         //getAllCourses returns a promise
         return courseApi.getAllCourses().then(
             courses =>{
@@ -32,6 +34,7 @@ export function loadCourses(){
 
 export function saveCourse(course){
     return function(dispatch, getState) {
+        dispatch(beginAjaxCall());
         return courseApi.saveCourse(course).then(savedCourse => {
             course.id ? dispatch(updateCourseSuccess(savedCourse)):dispatch(createCourseSuccess(savedCourse));
         }).catch(error=>{
