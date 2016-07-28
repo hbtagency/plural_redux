@@ -13,7 +13,8 @@ export function loadAuthors() {
             authors => {
                 dispatch(loadAuthorsSuccess(authors));
             }).catch(error => {
-                throw(error); 
+                dispatch(ajaxCallError(error));//Let reducer know when to change state ajax loading back to 0
+                throw(error); //Expose error to react
             });
     };
 }
