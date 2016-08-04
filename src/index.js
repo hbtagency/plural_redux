@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
+import {loadTree} from './actions/treeActions';
 
 
 
@@ -19,6 +20,7 @@ const store = configureStore();
 //Init store by async call
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
+store.dispatch(loadTree());
 
 
 render(
