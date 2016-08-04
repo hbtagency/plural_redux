@@ -1,5 +1,5 @@
 import * as types from './actionTypes/actionTypes';
-import treeApi from '../api/mockTreeApi';
+import TreeApi from '../api/mockTreeApi';
 import {beginAjaxCall} from './ajaxStatusActions';
 /* not in use
 export function createCourse(course){
@@ -7,13 +7,13 @@ export function createCourse(course){
     return {type: types.CREATE_COURSE,course};
 }*/
 
-export function loadTreeSuccess(courses){
-    return {type: types.LOAD_TREE_SUCCESS, courses};
+export function loadTreeSuccess(tree){
+    return {type: types.LOAD_TREE_SUCCESS, tree};
 }
 
 export function loadTree(){
     return function(dispatch) {
-        return treeApi.getTree().then(
+        return TreeApi.getTree().then(
             tree =>{
                 dispatch(loadTreeSuccess(tree));
             }).catch(error => {
