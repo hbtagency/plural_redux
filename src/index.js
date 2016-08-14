@@ -18,6 +18,8 @@ import {loadTree} from './actions/treeActions';
 
 const store = configureStore();
 //Init store by async call
+
+
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 store.dispatch(loadTree());

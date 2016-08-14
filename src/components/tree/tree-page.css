@@ -1,0 +1,11 @@
+.no-bullet,.no-bullet ul{
+    list-style: none;
+}
+
+.no-bullet,.no-bullet ul li{
+    border:1px solid #eee;
+    display:block;
+    padding:10px;
+    border-radius: 5px;
+    margin:10px 0;
+}

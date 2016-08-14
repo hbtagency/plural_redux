@@ -10,7 +10,7 @@ const CourseList = ({courses}) =>{
                       <th>Title</th>
                       <th>Author</th>
                       <th>Category</th>
-                      <th>Lenght</th>
+                      <th>Length</th>
                  </tr>
              </thead>
              <tbody>
@@ -19,7 +19,7 @@ const CourseList = ({courses}) =>{
                  )}
              </tbody>
         </table>
-    )
+    );
 }
 
 CourseList.protoTypes = {
