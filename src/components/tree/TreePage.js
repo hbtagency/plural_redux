@@ -23,8 +23,7 @@ export class TreePage extends React.Component {
         return(
            <ul>
                <li>Type: {this.props.tree ? this.props.tree.type : "Not found"}</li>
-                <li>Type: {this.props.tree ? this.props.tree.type : "Not found"}</li>
-
+               <li>Type: {this.props.tree ? this.props.tree.type : "Not found"}</li>
            </ul>  
         );
     }
