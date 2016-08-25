@@ -58,6 +58,11 @@ class TreeApi {
       }, delay);
     });
   }
+
+  static updateTreeNode(){
+
+  }
+
 }
 
 export default TreeApi;

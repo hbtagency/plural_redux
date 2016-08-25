@@ -15,47 +15,47 @@ export class ManageCoursepage extends React.Component {
             saving: false
         };
 
-        this.updateCourseState = this.updateCourseState.bind(this);
-        this.saveCourse = this.saveCourse.bind(this);
-    }
-    
-    updateCourseState(event){
-        const field = event.target.name;
-        let course = this.state.course;
-        course[field] = event.target.value;
-        return this.setState({course:course});
+        this._updateCourseState = this._updateCourseState.bind(this);
+        this._saveCourse = this._saveCourse.bind(this);
     }
 
-    saveCourse(event){
-        event.preventDefault();
-        this.setState({saving:true});//This will disable button in CourseForm
-        this.props.actions.saveCourse(this.state.course)
-            .then(() => this.redirect())
-            .catch(error => {
-                toastr.error(error);
-                this.setState({saving:false});
-            });
-    }
-
-    redirect(){
-        this.setState({saving:false});
-        toastr.success('Course saved!');
-        this.context.router.push('/courses');
-    }
-    
     //This function enables that if you refresh course page, course info will not be reset. 
     componentWillReceiveProps(nextProps){
     if(this.props.course.id != nextProps.course.id){
            this.setState({course:Object.assign({},nextProps.course)});
         }
     }
+    
+    _updateCourseState(event){
+        const field = event.target.name;
+        let course = this.state.course;
+        course[field] = event.target.value;
+        return this.setState({course:course});
+    }
+
+    _saveCourse(event){
+        event.preventDefault();
+        this.setState({saving:true});//This will disable button in CourseForm
+        this.props.actions.saveCourse(this.state.course)
+            .then(() => this._redirect())
+            .catch(error => {
+                toastr.error(error);
+                this.setState({saving:false});
+            });
+    }
+
+    _redirect(){
+        this.setState({saving:false});
+        toastr.success('Course saved!');
+        this.context.router.push('/courses');
+    }
 
     render(){
         return(
             <CourseForm 
               allAuthors={this.props.authors}
-              onChange={this.updateCourseState}
-              onSave={this.saveCourse}
+              onChange={this._updateCourseState}
+              onSave={this._saveCourse}
               errors={this.state.errors}
               course={this.state.course}
               saving={this.state.saving}

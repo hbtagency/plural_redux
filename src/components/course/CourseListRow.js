@@ -15,6 +15,6 @@ const CourseListRow = ({course}) => {
 
 CourseListRow.protoTypes = {
     course : PropTypes.object.isRequired
-}
+};
 
 export default CourseListRow;

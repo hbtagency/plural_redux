@@ -1,0 +1,19 @@
+.cat{
+    background-color:#eee;
+}
+
+.cat input{
+    display:none;
+    padding:10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #eee;
+    width:100%;
+}
+
+.cat input.active{
+    display:block;
+}
+
+.cat span.deactive{
+    display:none;
+}

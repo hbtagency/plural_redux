@@ -3,4 +3,4 @@ export default{
     courses:[],
     ajaxCallsInProgress:0,
     tree:{}
-}
+};

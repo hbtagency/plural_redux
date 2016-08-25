@@ -54,9 +54,8 @@ function mapStateToProps(state,ownProps) {
 
 function mapDispatchToProps(dispatch){
     return {
-        //createCourse: course => dispatch(courseActions.createCourse(course))
         actions: bindActionCreators(courseActions,dispatch)
-    }
+    };
 }
 //Connect will inject dispatch
 export default connect(mapStateToProps,mapDispatchToProps)(CoursesPage);

@@ -1,20 +1,27 @@
 import React,{PropTypes} from 'React';
-import {Link} from 'react-router';
+import './node.css';
 
-const TreeNode = ({tree}) => {
+const TreeNode = ({node,handleOnclick,handleOnchange}) => {
     return (
-        <tr>
-            <td><a href={course.watchHref} target="_black">Watch</a></td>
-            <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
-            <td>{course.authorId}</td>
-            <td>{course.category}</td>
-            <td>{course.length}</td>
-        </tr>
+        <ul className={node.type}>
+            <li id={node.id + '_desc'} onClick={handleOnclick}>
+                <span>Description: {node.desc}</span>
+                <input type="text" onChange={handleOnchange} placeholder={node.desc}/>
+            </li>
+            <li>
+                Node Type: {node.type}
+            </li>
+            <li>
+                Node Value: {node.value}
+            </li>
+        </ul>
     );
-};
-
-CourseListRow.protoTypes = {
-    course : PropTypes.object.isRequired
 }
 
-export default CourseListRow;
+TreeNode.propTypes = {
+    node : PropTypes.object.isRequired,
+    handleOnclick : PropTypes.func.isRequired,
+    handleOnchange : PropTypes.func.isRequired
+}
+
+export default TreeNode;
