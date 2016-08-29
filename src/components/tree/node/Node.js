@@ -1,4 +1,4 @@
-import React,{PropTypes} from 'React';
+import React,{PropTypes} from 'react';
 import './node.css';
 
 const TreeNode = ({node,handleOnclick,handleOnchange}) => {

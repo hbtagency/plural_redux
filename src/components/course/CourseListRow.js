@@ -1,4 +1,4 @@
-import React,{PropTypes} from 'React';
+import React,{PropTypes} from 'react';
 import {Link} from 'react-router';
 
 const CourseListRow = ({course}) => {
